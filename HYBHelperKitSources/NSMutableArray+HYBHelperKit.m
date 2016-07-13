@@ -46,7 +46,7 @@
 }
 
 - (BOOL)hyb_exchangeObjectFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
-  if ([self count] != 0 && toIndex != fromIndex
+  if (toIndex != fromIndex
       && fromIndex < [self count] && toIndex < [self count]) {
     [self exchangeObjectAtIndex:fromIndex withObjectAtIndex:toIndex];
     

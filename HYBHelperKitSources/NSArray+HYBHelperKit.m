@@ -11,26 +11,29 @@
 @implementation NSArray (HYBHelperKit)
 
 - (id)hyb_objectAtIndex:(NSUInteger)index {
-  NSUInteger count = [self count];
+    if (index < self.count) {
+        return [self objectAtIndex:index];
+    }
   
-  if (count > 0 && index < count) {
-    return [self objectAtIndex:index];
-  }
-  
-  return nil;
+    return nil;
 }
 
 - (BOOL)hyb_isContainsString:(NSString *)string {
-  for (NSString *element in self) {
-    if ([element isKindOfClass:[NSString class]] && [element isEqualToString:string]) {
-      return true;
+    if(!string){
+        return NO;
     }
-  }
+    
+    for (id element in self) {
+        if ([element isKindOfClass:[NSString class]] && [element isEqualToString:string]) {
+            return YES;
+        }
+    }
   
-  return false;
+    return NO;
 }
 
 - (NSArray *)hyb_reverseArray {
+    /*
   NSMutableArray *arrayTemp = [NSMutableArray arrayWithCapacity:[self count]];
   NSEnumerator *enumerator = [self reverseObjectEnumerator];
   
@@ -38,7 +41,9 @@
     [arrayTemp addObject:element];
   }
   
-  return arrayTemp;
+  return arrayTemp;*/
+    
+    return self.reverseObjectEnumerator.allObjects;
 }
 
 @end
